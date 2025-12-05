@@ -8,7 +8,7 @@
   <style>
     .s {
       width: 60%;
-      height: 150px;
+      height: 190px;
       border: 1px solid #000;
       margin: auto;
       padding: 10px;  
@@ -16,14 +16,32 @@
     .mt10 {
       margin-top: 10px;
     }
+    
+    .w100 {
+      width: 100%;
+    }
+
+    .ib{
+      display: inline-block;
+    }
   </style>
 </head>
   <body>
     <div class="s box1">
       <h2>렌더링이 일어나는 박스</h2>
-      <input type="text" value="" class="">
-      <button>클릭</button>
-      <div></div>
+      <label for="name">이름</label>
+      <input id="name" class="name" type="text" value="" class="">
+      <div class="ib nameBox"></div>
+      <br>
+      <label for="age">나이</label>
+      <input id="age" class="age" type="text" value="" class="">
+      <div class="ib ageBox" ></div>
+      <br>
+      <label for="hobby">취미</label>
+      <input id="hobby" class="hobby" type="text" value="" class="">
+      <div class="ib hobbyBox"></div>
+      <br>
+      <button class="mt10 w100">클릭</button>
     </div>
 
     <div class="s box2 mt10">
