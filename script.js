@@ -76,8 +76,8 @@ const renderBox1 = () => {
       setName("업데이트4");
       setName("최종값"); 
 
-      const nameInputVal = document.querySelector("#name").value;
-      setName(nameInputVal);
+      //const nameInputVal = document.querySelector("#name").value;
+      //setName(nameInputVal);
       const ageInputVal = document.querySelector("#age").value;
       setAge(ageInputVal);
       const hobbyInputVal = document.querySelector("#hobby").value;
