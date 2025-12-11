@@ -30,16 +30,30 @@ const scheduleUpdate = () => {
 };
 
 const flushUpdates = () => {
-  //업데이트 큐 적용
-  for (const update of 업데이트큐) {
-    arr[update.index] = update.value;
+   // 같은 인덱스의 마지막 값만 적용 (중복 제거)
+  const 최종업데이트 = new Map();
+
+  // 업데이트 큐 적용
+   for (const update of 업데이트큐) {
+    최종업데이트.set(update.index, update.value);
+  }
+
+   // 실제로 값이 변경된 경우만 체크
+  let 변경있음 = false;
+  for (const [index, value] of 최종업데이트) {
+    if (arr[index] !== value) {
+      arr[index] = value;
+      변경있음 = true;
+    }
   }
 
   업데이트큐 = [];
   배치중 = false;
 
-  //상태 모두 적용 후 한번 렌더링
-  renderBox1();
+ // 실제 변경이 있을 때만 렌더링
+  if (변경있음) {
+    renderBox1();
+  }
 };
 
 let 초기화패턴 = false;
@@ -69,19 +83,19 @@ const renderBox1 = () => {
     document.querySelector(".box1 button").onclick = () => {
       console.log("⭐ setState 여러 번 호출 테스트 시작"); // ⭐
 
-      // ⭐ 같은 상태를 여러 번 업데이트
-      setName("업데이트1");
-      setName("업데이트2");
-      setName("업데이트3");
-      setName("업데이트4");
-      setName("최종값"); 
-
       //const nameInputVal = document.querySelector("#name").value;
       //setName(nameInputVal);
       const ageInputVal = document.querySelector("#age").value;
       setAge(ageInputVal);
       const hobbyInputVal = document.querySelector("#hobby").value;
       setHobby(hobbyInputVal);
+
+        // ⭐ 같은 상태를 여러 번 업데이트
+      setName("업데이트1");
+      setName("업데이트2");
+      setName("업데이트3");
+      setName("업데이트4");
+      setName("최종값"); 
 
       // ⭐ flush 이후 어떤 값이 저장됐는지 테스트
       setTimeout(() => {
